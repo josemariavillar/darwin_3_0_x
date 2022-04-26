@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>es.santander.nuar</groupId>
+    <artifactId>migration_to_darwin_3</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Darwin Migration Assistant Project Test</name>
+    <description>Migration Darwin to last Darwin 3.0.x project</description>
+
+    <!-- Use starter parent -->
+    <parent>
+        <groupId>es.santander.darwin</groupId>
+        <artifactId>darwin-spring-boot-starter-parent</artifactId>
+        <version>2.9.0-RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Swagger al arquetipo -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <!-- Santander darwin libraries -->
+        <dependency>
+            <groupId>es.santander.darwin</groupId>
+            <artifactId>darwin-spring-boot-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.santander.darwin</groupId>
+            <artifactId>darwin-spring-boot-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.santander.darwin</groupId>
+            <artifactId>darwin-spring-boot-cache-jbossdatagrid</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.santander.darwin</groupId>
+            <artifactId>darwin-spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.santander.darwin</groupId>
+            <artifactId>darwin-spring-boot-starter-webservice</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.santander.darwin</groupId>
+            <artifactId>darwin-spring-boot-starter-authentication</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>es.santander.darwin</groupId>
+            <artifactId>darwin-spring-boot-starter-authorization</artifactId>
+        </dependency>
+        <!-- End Santander darwin libraries -->
+
+		<!-- Partenon dependency -->
+		<dependency>
+			<groupId>com.santander.serenity.corporate.data</groupId>
+			<artifactId>partenon-spring-boot-starter</artifactId>
+		</dependency>
+		<!-- End Partenon librarie -->
+
+		<!-- Leancore -->
+		<dependency>
+			<groupId>es.santander.darwin</groupId>
+			<artifactId>darwin-spring-boot-leancore</artifactId>
+		</dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Sagacity -->
+        <dependency>
+            <groupId>com.santander.saga</groupId>
+            <artifactId>sagacity-darwin-starter</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.santander.darwin</groupId>
+            <artifactId>technical-validations</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>Hoxton.SR9</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+        </dependency>
+        <!-- Sagacity -->
+
+        <!-- For Sagacity test -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <maxAttempts>600</maxAttempts>
+                    <fork>false</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <locales>es</locales>
+                </configuration>
+            </plugin>
+			<plugin>
+				<groupId>org.openrewrite.maven</groupId>
+				<artifactId>rewrite-maven-plugin</artifactId>
+				<version>4.21.0</version>
+				<configuration>
+					<activeRecipes>
+                        <recipe>com.santander.darwin.migrationassistant.DarwinMigration</recipe>
+					</activeRecipes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.santander.darwin</groupId>
+						<artifactId>migration-assistant</artifactId>
+						<version>3.0.0-RC2</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.yaml</include>
+                    <include>**/banner.txt</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>

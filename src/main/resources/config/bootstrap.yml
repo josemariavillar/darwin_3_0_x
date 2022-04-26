@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: migration-project-test
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://configuration-service:8080/
+      fail-fast: false

@@ -1,0 +1,47 @@
+env.securityServer.endpoint_pkm: http://pkm-endpoint
+
+server.servlet.context-path: /account-saga-poc
+server:
+  port: 8282
+darwin:
+  app-key: appKey
+  logging:
+    kafka:
+      properties:
+        security.protocol: SSL
+  security:
+    pkm-endpoint: ${env.securityServer.endpoint_pkm}
+    sts-endpoint:
+      - http://sts1-endpoint
+      - http://sts2-endpoint
+    authorization:
+      remote:
+        coc: https://srvnuarintra.santander.dev.corp/cop/opesec/channel
+        con: https://srvnuarintra.santander.dev.corp/cop/opesec/contract
+    stsRetries: 2
+    restTemplate:
+      connect-timeout: 10
+      connection-request-timeout: 20
+      read-timeout: 30
+      connection-time-to-live: 40
+  events:
+    authorizationExceptionRetryInterval: 10
+spring:
+  #sagacity-library
+  jpa:
+    properties:
+      hibernate:
+        dialect: ${env.example-sagacity.datasource.dialect}
+    hibernate:
+      ddl-auto: update
+      default_schema: ${env.example-sagacity.datasource.schema}
+  datasource:
+    url: ${env.example-sagacity.datasource.url}
+    username: ${env.example-sagacity.datasource.username}
+    password: ${env.example-sagacity.datasource.password}
+    driver-class-name: ${env.example-sagacity.datasource.driver}
+sagacity:
+  main-broker:
+    bootstrap-servers: ${env.sagacity.main-broker.bootstrap-servers}
+    topic: ${env.sagacity.main-broker.topic}
+    jaas: ${env.sagacity.main-broker.jaas}
