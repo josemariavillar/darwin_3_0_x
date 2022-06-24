@@ -213,26 +213,27 @@
                     <locales>es</locales>
                 </configuration>
             </plugin>
-			<plugin>
-				<groupId>org.openrewrite.maven</groupId>
-				<artifactId>rewrite-maven-plugin</artifactId>
-				<version>4.24.0</version>
-				<configuration>
-					<activeRecipes>
-                        <recipe>com.santander.darwin.migrationassistant.DarwinMigration</recipe>
-					</activeRecipes>
+            <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>4.24.0</version>
+                <configuration>
+                    <activeRecipes>
+                        <recipe>com.santander.darwin.migrationassistant.DarwinMigration_3_0</recipe>
+                    </activeRecipes>
                     <activeStyles>
                         <style>com.santander.darwin.migrationassistant.NoStarImports</style>
                     </activeStyles>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.santander.darwin</groupId>
-						<artifactId>migration-assistant</artifactId>
-						<version>3.1.0-RC2</version>
-					</dependency>
-				</dependencies>
-			</plugin>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>com.santander.darwin</groupId>
+                        <artifactId>migration-assistant</artifactId>
+                        <version>3.2.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
         <resources>
             <resource>
