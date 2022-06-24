@@ -230,7 +230,7 @@
                     <dependency>
                         <groupId>com.santander.darwin</groupId>
                         <artifactId>migration-assistant</artifactId>
-                        <version>3.2.0-SNAPSHOT</version>
+                        <version>3.2.0-RC1</version>
                     </dependency>
                 </dependencies>
             </plugin>
